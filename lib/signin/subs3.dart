@@ -7,10 +7,12 @@ import 'package:media_app/signin/signin.dart';
 import '../main2.dart';
 import 'help.dart';
 class subs3 extends StatefulWidget {
+  var text;
+  subs3({Key key, @required this.text}) : super(key: key);
+
   @override
   _subs3State createState() => _subs3State();
 }
-
 class _subs3State extends State<subs3> {
   @override
   Widget build(BuildContext context) {
@@ -97,16 +99,10 @@ class _subs3State extends State<subs3> {
                   /*  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => card()));*/
-
-
                     Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-
-
-
-                  },
-                )
+                        MaterialPageRoute(builder: (context) => HomeScreen(text: widget.text)));
+                  },)
             ),
           ],
         ),

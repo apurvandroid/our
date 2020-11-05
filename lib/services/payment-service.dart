@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,15 +8,15 @@ import 'package:media_app/signin/subs3.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 
 class StripeTransactionResponse {
-  String message;
+  String message,id;
   bool success;
-  StripeTransactionResponse({this.message, this.success});
+  StripeTransactionResponse({this.message,this.id, this.success});
 }
 
 class StripeService {
   static String apiBase = 'https://api.stripe.com/v1';
   static String paymentApiUrl = '${StripeService.apiBase}/payment_intents';
-  static String secret = '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';
+  static String secret = 'sk_test_7jxH9lVIChuBcg80mBDLemTf';
   static Map<String, String> headers = {
     'Authorization': 'Bearer ${StripeService.secret}',
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -23,7 +24,7 @@ class StripeService {
   static init() {
     StripePayment.setOptions(
       StripeOptions(
-        publishableKey: "pk_live_6DrEtGn6sPMN6YZAViZPVJHG",
+        publishableKey: "pk_test_a0uH2PnyOSoROMoiRKfvn31C",
         merchantId: "test",
         androidPayMode: 'test'
       )
@@ -47,8 +48,10 @@ class StripeService {
         )
       );
       if (response.status == 'succeeded') {
+
         return new StripeTransactionResponse(
           message: 'Transaction successful',
+          id: response.paymentIntentId,
           success: true
         );
       } else {
@@ -84,12 +87,14 @@ class StripeService {
         )
       );
 
-      debugPrint("data"+response.status.toString());
+
 
 
       if (response.status == 'succeeded') {
+
         return new StripeTransactionResponse(
           message: 'Transaction successful',
+            id: response.paymentIntentId,
           success: true
         );
       } else {

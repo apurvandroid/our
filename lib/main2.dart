@@ -26,6 +26,10 @@ class Person {
 }
 
 class HomeScreen extends StatefulWidget {
+  var text;
+
+  HomeScreen({Key key, @required this.text}) : super(key: key);
+
   @override
   _HomeScreenPage createState() => _HomeScreenPage();
 }
@@ -175,10 +179,9 @@ class _HomeScreenPage extends State<HomeScreen>
                   icon: Icon(Icons.search,size:18,),
                   child: Text("Search",style: TextStyle(fontSize: 9),maxLines: 1,),
                 ),
-             /*   Tab(
-                  icon: Icon(Icons.pages_outlined,size:18,),
+                Tab(
                   child: Text("Quotes",style: TextStyle(fontSize: 9),maxLines: 1,),
-                ),*/
+                ),
                 Tab(
                   icon: Icon(Icons.perm_identity,size: 18,),
                   child: Text("Profile",style: TextStyle(fontSize: 9),maxLines: 1,),
@@ -232,6 +235,11 @@ class FirstTabState extends State<FirstTab>{
   ];
   List x=[
     "assets/3.Judea and Samaria.png",
+    "assets/3.Sea of Galilee.png",
+    "assets/6.Bethlehem.png",
+    "assets/7.Judaean Desert.png",
+    "assets/23.Extriara of Jerusalem.png",
+    "assets/31.Nazareth.png",
   ];
   List a= [
    "assets/images (10).png",

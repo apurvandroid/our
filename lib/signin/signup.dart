@@ -1,11 +1,15 @@
+import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:media_app/main2.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 import 'package:media_app/pages/home.dart';
 import 'package:media_app/signin/signin.dart';
-import 'package:media_app/signin/subs3.dart';
+import 'package:http/http.dart' as http;
+
 
 import 'help.dart';
 
@@ -32,11 +36,56 @@ class _signupState extends State<signup> {
         issignup = true;
       });
 
-      /*debugPrint("demo "+emailEditingController.text.toString());*/
-      debugPrint("demo " + widget.text);
-      Navigator.push(
+     /* Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => subs3()));
+          MaterialPageRoute(builder: (context) => subs3(text: widget.text)));*/
+      final uri = 'http://3.6.183.65/App/user_signup';
+      var map = new Map<String, dynamic>();
+      map['mobile'] = emailEditingController.text.toString();
+      map['password'] = passwordEditingController.text.toString();
+
+
+      http.Response response = await http.post(
+        uri,
+        headers: {"Accept": "application/json"},
+        body: map,
+      );
+
+      debugPrint("demo parsedJson "+response.body);
+      Map<String, dynamic> responseJson = json.decode(response.body);
+
+
+
+      var message = responseJson['message'];
+      var status = responseJson['status'];
+
+      if(status=="success"){
+        Fluttertoast.showToast(
+            msg: message,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1
+        );
+
+
+        var amount="16";
+        if(widget.text.toString() =="4"){
+          amount="16";
+        }else if(widget.text.toString() =="3"){
+          amount="14";
+        }else if(widget.text.toString() =="2"){
+          amount="10";
+        }else if(widget.text.toString() =="1"){
+          amount="7";
+        }
+
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage(text: amount,id:responseJson["data"][0]["signup_id"].toString())));
+      }else{
+        setState(() {});
+      }
+
 
     } else {
       print("something wrong");
@@ -207,13 +256,13 @@ class _signupState extends State<signup> {
                             onPressed: () {
                               debugPrint("data");
                               if (userauth.currentState.validate()) {
-                                //signup();
+                                signup();
                                 /*      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => subs3()));*/
-                                Navigator.pushReplacement(
+                              /*  Navigator.pushReplacement(
                                     context,
-                                    MaterialPageRoute(builder: (context) => HomePage()));
+                                    MaterialPageRoute(builder: (context) => HomePage()));*/
                               }
                             },
                           )),

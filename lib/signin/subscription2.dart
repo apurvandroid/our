@@ -366,14 +366,12 @@ class _BOdyState extends State<BOdy> {
                   onPressed: ()
                   {
 
-                    Navigator.pushReplacement(
+                    /*Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-
-                    debugPrint("demo $btHit");
-                /*    Navigator.pushReplacement(
+                        MaterialPageRoute(builder: (context) => HomeScreen()));*/
+                    Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => signup(text: btHit)));*/
+                      MaterialPageRoute(builder: (context) => signup(text: btHit)));
                   },
                 )
             ),
