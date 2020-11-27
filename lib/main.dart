@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import "package:flutter/material.dart";
 import 'package:media_app/signin/Homescreen.dart';
 
@@ -8,6 +10,8 @@ import "dart:async";
 import 'package:media_app/signin/signup.dart';
 import 'package:media_app/signin/subscription.dart';
 
+import 'main2.dart';
+import 'package:http/http.dart' as http;
 
 
 void main() {
@@ -43,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
+  //  updateCart();
     Timer(
       Duration(seconds:7),
           () {
@@ -52,6 +56,11 @@ class _SplashScreenState extends State<SplashScreen> {
             MaterialPageRoute(
               builder: (context) =>firstscreen(),
             ));
+    /*   Navigator.push(
+       context,
+       MaterialPageRoute(
+       builder: (context) =>HomeScreen(),
+       ));*/
       },
     );
   }
@@ -77,6 +86,28 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
         ]),
+    );
+  }
+
+
+  updateCart() async {
+    final String url = 'http://3.6.183.65/App/home_data';
+    final client = new http.Client();
+    final response = await client.put(
+      url,
+      headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+
+    );
+
+    Timer(
+      Duration(seconds:7),
+          () {
+              Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>HomeScreen(text: response.body.toString()),
+            ));
+      },
     );
   }
 }

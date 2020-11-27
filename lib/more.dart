@@ -3,6 +3,8 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:media_app/download.dart';
 import 'package:media_app/signin/help.dart';
 import 'package:media_app/signin/signin.dart';
+import 'package:share/share.dart';
+
 import 'notification.dart';
 class more extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class _moreState extends State<more> {
   Future<void> share() async {
     await FlutterShare.share(
         title: 'ORI',
-        text: 'ORI ORI',
+        text: 'Hi! I am sending you App. Sign up on this app using this.',
         linkUrl:
         '',
         chooserTitle: 'Share ORI');
@@ -100,11 +102,16 @@ class _moreState extends State<more> {
               Text("HELP",style: TextStyle(color: Colors.grey,),),
             ],
           )),
+
+
+
           SizedBox(height: 20,),
           FlatButton(onPressed: (){
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => signin()));
+         /*   Share.share("text",
+                subject: "subject",
+            );*/
+
+
           }, child: Row(
            /* children: [
               Icon(Icons.logout,color: Colors.grey,),

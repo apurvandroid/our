@@ -1,18 +1,25 @@
 import 'dart:async';
-import 'dart:io';
+
 
 import 'package:better_player/better_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
+
 
 class player extends StatefulWidget {
+  var text;
+
   @override
+  player({Key key, @required this.text}) : super(key: key);
+
   _playerState createState() => _playerState();
+
+
 }
 
 class _playerState extends State<player> {
+
+
   BetterPlayerController _betterPlayerController;
   StreamController<bool> _fileVideoStreamController =
   StreamController.broadcast();
@@ -20,16 +27,16 @@ class _playerState extends State<player> {
 
   Future<BetterPlayerController> _setupDefaultVideoData() async {
     var dataSource = BetterPlayerDataSource(BetterPlayerDataSourceType.NETWORK,
-        "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4",
+       widget.text,
         resolutions: {
           "LOW":
-          "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4",
+          widget.text,
           "MEDIUM":
-          "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_640_3MG.mp4",
+          widget.text,
           "LARGE":
-          "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4",
+          widget.text,
           "EXTRA_LARGE":
-          "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4"
+          widget.text
         });
     _betterPlayerController = BetterPlayerController(
         BetterPlayerConfiguration(
@@ -46,14 +53,14 @@ class _playerState extends State<player> {
     return _betterPlayerController;
   }
 
+/*
   Future<BetterPlayerController> _setupFileVideoData() async {
     await _saveAssetVideoToFile();
     await _saveAssetSubtitleToFile();
     final directory = await getApplicationDocumentsDirectory();
 
-    var dataSource = BetterPlayerDataSource(
-      BetterPlayerDataSourceType.FILE,
-      "${directory.path}/testvideo.mp4",
+    var dataSource = BetterPlayerDataSource(BetterPlayerDataSourceType.NETWORK,
+      widget.text,
       subtitles: BetterPlayerSubtitlesSource.single(
         type: BetterPlayerSubtitlesSourceType.FILE,
         url: "${directory.path}/example_subtitles.srt",
@@ -66,7 +73,9 @@ class _playerState extends State<player> {
 
     return _betterPlayerController;
   }
+*/
 
+/*
   Future _saveAssetSubtitleToFile() async {
     String content =
     await rootBundle.loadString("assets/example_subtitles.srt");
@@ -81,6 +90,7 @@ class _playerState extends State<player> {
     var file = File("${directory.path}/testvideo.mp4");
     file.writeAsBytesSync(content.buffer.asUint8List());
   }
+*/
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +147,7 @@ class _playerState extends State<player> {
       builder: (context, snapshot) {
         if (snapshot?.data == true) {
           return FutureBuilder<BetterPlayerController>(
-            future: _setupFileVideoData(),
+            future: _setupDefaultVideoData(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());

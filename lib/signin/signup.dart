@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:media_app/pages/home.dart';
 import 'package:media_app/signin/signin.dart';
-import 'package:http/http.dart' as http;
+
 
 
 import 'help.dart';
@@ -29,12 +30,35 @@ class _signupState extends State<signup> {
   final userauth = GlobalKey<FormState>();
 
   bool issignup = false;
+  var TokenUser;
+
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+  _registerOnFirebase() {
+    _firebaseMessaging.subscribeToTopic('all');
+    _firebaseMessaging
+        .getToken()
+        .then((token) => TokenUser= token.toString());
+
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _registerOnFirebase();
+
+  }
+
+
 
   signup() async {
     if (userauth.currentState.validate()) {
       setState(() {
         issignup = true;
       });
+
+      debugPrint("TAG" +TokenUser.toString());
 
      /* Navigator.push(
           context,
@@ -43,6 +67,7 @@ class _signupState extends State<signup> {
       var map = new Map<String, dynamic>();
       map['mobile'] = emailEditingController.text.toString();
       map['password'] = passwordEditingController.text.toString();
+      map['token'] = TokenUser.toString();
 
 
       http.Response response = await http.post(
@@ -51,7 +76,7 @@ class _signupState extends State<signup> {
         body: map,
       );
 
-      debugPrint("demo parsedJson "+response.body);
+      debugPrint("demo parsedJson "+response.body.toString());
       Map<String, dynamic> responseJson = json.decode(response.body);
 
 
@@ -257,6 +282,7 @@ class _signupState extends State<signup> {
                               debugPrint("data");
                               if (userauth.currentState.validate()) {
                                 signup();
+
                                 /*      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => subs3()));*/

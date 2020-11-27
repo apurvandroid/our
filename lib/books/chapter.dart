@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:media_app/books/pdf.dart';
+import 'package:media_app/books/pdfview.dart';
 class chapter extends StatefulWidget {
   @override
   _chapterState createState() => _chapterState();
@@ -28,7 +28,7 @@ class _chapterState extends State<chapter> {
                FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 1",style: TextStyle(color: Colors.white),)),
@@ -36,7 +36,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 2",style: TextStyle(color: Colors.white),)),
@@ -44,7 +44,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 3",style: TextStyle(color: Colors.white),)),
@@ -52,7 +52,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 4",style: TextStyle(color: Colors.white),)),
@@ -60,7 +60,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 5",style: TextStyle(color: Colors.white),)),
@@ -68,7 +68,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 6",style: TextStyle(color: Colors.white),)),
@@ -76,7 +76,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 7",style: TextStyle(color: Colors.white),)),
@@ -84,7 +84,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 8",style: TextStyle(color: Colors.white),)),
@@ -92,7 +92,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 9",style: TextStyle(color: Colors.white),)),
@@ -100,7 +100,7 @@ class _chapterState extends State<chapter> {
               FlatButton(onPressed: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pdf()));
+                    MaterialPageRoute(builder: (context) => pdfview()));
               },child: ListTile(
                 title: Container(color: Colors.blueGrey[700],height: 60,padding: EdgeInsets.all(8),alignment: Alignment.center,
                     child: Text("JOHN CHAPTER 10",style: TextStyle(color: Colors.white),)),

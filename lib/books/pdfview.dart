@@ -5,16 +5,19 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class Pdf extends StatefulWidget {
-  Pdf({Key key, this.title}) : super(key: key);
-
+class pdfview extends StatefulWidget {
+  var pdf;
   final String title;
 
+  pdfview({Key key, this.title,this.pdf}) : super(key: key);
+
+
+
   @override
-  _PdfState createState() => _PdfState();
+  _pdfviewState createState() => _pdfviewState();
 }
 
-class _PdfState extends State<Pdf> {
+class _pdfviewState extends State<pdfview> {
   String urlPDFPath = "";
   bool exists = true;
   int _totalPages = 0;
@@ -48,7 +51,7 @@ class _PdfState extends State<Pdf> {
   @override
   void initState() {
     requestPersmission();
-    getFileFromUrl("http://www.africau.edu/images/default/sample.pdf").then(
+    getFileFromUrl("http://3.6.183.65/pdf/"+widget.pdf.toString()).then(
           (value) => {
         setState(() {
           if (value != null) {
@@ -70,7 +73,7 @@ class _PdfState extends State<Pdf> {
     if (loaded) {
       return Scaffold(backgroundColor: Colors.black,
         appBar: AppBar(backgroundColor: Colors.black,
-        title: Text("Title",style: TextStyle(color: Colors.white),),
+        title: Text(widget.title,style: TextStyle(color: Colors.white),),
       ),
         body: PDFView(
           filePath: urlPDFPath,
